@@ -1,0 +1,47 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--<div class="main">
+  <h2 class="panel-header">Seat Selection</h2>
+<div class="col-md-8 col-md-offset-2">
+  <br>
+     <h4>Legend:</h4>
+    <ul>
+      <li>Available:<img src='../../../assets/images/seats.jpg'></li>
+      <li>Booked:&nbsp;&nbsp;<img src="src/app/assets/bookedseat.jpg"> </li>
+    </ul>-->
+<div class="main">
+  <div class="row">   
+    <div class="pass-details col-md-2">
+      <h2 class="panel-header">Passenger Details</h2>
+      <h4 class="panel-header"><b>Adult</b></h4>
+      <ul class="list-group" *ngFor="let passenger of adultpassengers">
+        <li class="list-group-item">{{passenger.title}} {{passenger.firstname}} {{passenger.lastname}}</li>
+      </ul>
+      <h4 class="panel-header"  *ngIf="childpassengercount>0"><b>Child</b></h4>
+      <ul class="list-group" *ngFor="let passenger of childpassengers">
+        <li class="list-group-item">{{passenger.title}} {{passenger.firstname}} {{passenger.lastname}}</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h1 class="panel-header"><b>Seat Selection</b></h1>
+      <h2>{{class}}</h2>
+      <div class="wrapper">
+        <div *ngFor="let seat of seats; let i = index">
+          <button  style="outline:0;" (click)="selectSeat(seat.SeatNo)" [ngClass]="seat.status" [disabled]="(seat.class!=class)">{{seat.SeatNo}}</button>
+        </div>
+      </div>
+      <div *ngIf="isReturn">
+        <hr>
+        <h3 class="panel-header"><b>Return Flight</b></h3>
+        <div class="wrapper" >
+          <div *ngFor="let seat of returnSeats; let i = index">
+            <button style="outline:0;" (click)="selectReturnSeat(seat.SeatNo)" [ngClass]="seat.status" [disabled]="(seat.class!=class)">{{seat.SeatNo}}</button>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-around">
+        <button mat-raised-button class="btn-success" (click)="onClick1()">Continue to Payment</button>
+      </div>
+    </div>
+  </div>
+</div>
+

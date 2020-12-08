@@ -1,0 +1,36 @@
+.main{
+
+    font-size: large;
+    width: auto;
+    height:auto;
+}
+
+.row
+{
+    color: black;
+    margin-top: 5%;
+    justify-content: space-around;
+}
+.heading{
+   color: black;
+    display: flex;
+    justify-content: center;
+    padding: 3%;
+}
+.list-group{
+    min-width: 50%;
+  }
+
+ .title {
+    font-weight: 600;
+    text-transform: uppercase;
+    padding-left:5px;
+}
+.subcol
+{
+    text-align: center;
+}
+.continue
+{
+    width:10vh;
+}

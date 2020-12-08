@@ -1,0 +1,86 @@
+
+
+    <form class="my-form" method="post" (ngSubmit)="(onSubmit(addUser.value))" id="addUser" [formGroup]="addUser">
+        <mat-toolbar>
+            <span>Registration</span>
+        </mat-toolbar>
+        <div class="form-group">
+            <mat-form-field appearance="standard">
+                <mat-label>Title</mat-label>
+                <mat-select formControlName="Title" required>
+                    <mat-option value="Mr">Mr</mat-option>
+                    <mat-option value="Mrs">Mrs</mat-option>
+                    <mat-option value="Miss">Miss</mat-option>
+                </mat-select>
+                <mat-icon matPrefix>view_list</mat-icon>
+                <mat-error *ngIf="addUser.get('Title').touched && addUser.controls.Title.hasError('required')">Please choose a title</mat-error>
+            </mat-form-field>
+        </div>
+            <div class="form-group">
+            <mat-form-field appearance="standard">
+                <mat-label>First Name</mat-label>
+                <input  formControlName="FirstName" matInput  placeholder="First name"  required>
+                <mat-error *ngIf="addUser.get('FirstName').touched && addUser.controls.FirstName.hasError('required')">Please enter first name</mat-error>
+                <mat-error *ngIf="addUser.controls.FirstName.hasError('pattern')">Please enter only alphabets</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>Last Name</mat-label>
+                <input  formControlName="LastName" matInput  placeholder="Last Name" required>
+                <mat-error *ngIf="addUser.get('LastName').touched && addUser.controls.LastName.hasError('required')">Please enter last name</mat-error>
+                <mat-error *ngIf="addUser.controls.LastName.hasError('pattern')">Please enter only alphabets</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field appearance="standard"> 
+                <mat-label >Email</mat-label>
+                <input matInput placeholder="user@example.com" formControlName="UserEmailId" required>
+                <mat-icon matPrefix>email</mat-icon>
+                <mat-error *ngIf="addUser.get('UserEmailId').touched && addUser.controls.UserEmailId.hasError('required')">Please enter email id</mat-error>
+                <mat-error *ngIf="addUser.controls.UserEmailId.hasError('pattern')">Please enter valid email</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label >Mobile Number</mat-label>
+                <input matInput placeholder="(845)555-1212" formControlName="MobileNumber" required>
+                <mat-icon matPrefix>phone_enabled</mat-icon>
+                <mat-error *ngIf="addUser.get('MobileNumber').touched && addUser.controls.MobileNumber.hasError('required')">Please enter mobile number</mat-error>
+                <mat-error *ngIf="addUser.controls.MobileNumber.hasError('pattern')">Please enter valid mobile number</mat-error>
+            </mat-form-field>
+            </div>
+            <div class="form-group">
+            <mat-form-field appearance="standard">
+                <mat-label>Date of Birth</mat-label>
+                <input matInput [matDatepicker]="picker" [errorStateMatcher]="errorMatcher" value="DateOfBirth| Date" class="form-control" formControlName="DateOfBirth" [max]="todayShort" id="DateOfBirth" placeholder="mm/dd/yyyy" required>
+                <mat-datepicker-toggle matPrefix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker ></mat-datepicker>
+                <mat-error *ngIf="addUser.get('DateOfBirth').touched && addUser.controls.DateOfBirth.hasError('required')">DOB(mm/dd/yyyy) is required</mat-error>
+                <mat-error *ngIf="addUser.hasError('InvalidAge')">Age must be (18-80)</mat-error>
+            </mat-form-field>
+        </div>
+            <div class="form-group">
+            <mat-form-field appearance="standard">
+               <mat-label>Enter password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="Password" required>
+                <button type="button" mat-icon-button color-white matPrefix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="addUser.controls.Password.hasError('required')">Please enter a password</mat-error>
+                <mat-error *ngIf="addUser.get('Password').touched && addUser.controls.Password.hasError('minlength')">Password must be minimum 8 characters</mat-error>
+                <mat-error *ngIf="!addUser.get('Password').hasError('minlength') && addUser.controls.Password.hasError('pattern')">Must have atleast one uppercase,lowercase,special character and a digit</mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field appearance="standard">
+                <mat-label>Confirm password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="confirmPass" [errorStateMatcher]="errorMatcher" required>
+                <button type="button" mat-icon-button color-white matPrefix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                   <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="addUser.get('confirmPass').touched && addUser.controls.confirmPass.hasError('required')">Please confirm your password</mat-error>
+                <mat-error *ngIf="addUser.hasError('notSame')">Password does not match</mat-error>
+            </mat-form-field>
+            </div>
+            <div class="buttons">
+                 <button mat-raised-button type="submit" color="primary">REGISTER</button>
+                 <button  mat-raised-button color="warn" (click)="this.route.navigate(['userlogin'])" >CANCEL</button>
+            </div>
+    </form>

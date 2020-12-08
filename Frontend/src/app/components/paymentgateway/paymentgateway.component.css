@@ -1,0 +1,33 @@
+.main {
+    font-size: large;
+    width: 500px;
+    height: auto;
+    margin: 0em auto;
+    flex-direction: column;
+    justify-content: center;
+}
+button{
+    margin: 2rem;
+   
+    width: min-content;
+}
+    
+
+label{
+    margin-bottom: 10px;
+    display: block;
+}
+
+.mat-form-field {
+    width: 100%;
+    letter-spacing: 1px;
+    padding: 10px 20px;
+    margin-bottom: 50px;
+    margin:auto;   
+}
+mat-toolbar{
+    color: black;
+    display: flex;
+    justify-content: center;
+    padding: 5%;
+}

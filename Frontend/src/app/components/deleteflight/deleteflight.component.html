@@ -1,0 +1,19 @@
+
+   <div align="center" class="main"> 
+        
+        <form class="form1" [formGroup]="Deleteflight"  > 
+        <mat-form-field appearance="standard">
+          <mat-label >Select Flight:</mat-label>
+          <mat-select  required formControlName="FlightId"  >
+     
+              <mat-option *ngFor="let flight of flights" value="{{flight.FlightId}}">{{flight.FlightId}}({{flight.SourceId}}-{{flight.DestinationId}})</mat-option>
+          </mat-select>
+        </mat-form-field> 
+            <div align="center">
+            <button mat-raised-button color="Disabled"  type="delete"   (click)="onSubmit(Deleteflight.value)" >Delete Flight</button>&nbsp;
+            <button mat-raised-button color="Disabled"   type="submit"   (click)="this.route.navigate(['adminview'])" >Cancel</button>
+          </div>
+          </form>
+    </div>
+
+  

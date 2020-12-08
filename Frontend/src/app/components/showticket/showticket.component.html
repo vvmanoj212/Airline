@@ -1,0 +1,28 @@
+ 
+<div class="container-fluid" p-3 my-3 >
+    <div class="main">		
+        <h3><b>Ticket </b></h3>       
+        <div class="table-responsive">      
+              <table style="color: rgb(243, 242, 225);" id="mytable" class="table table-bordred table-striped">
+                 <div *ngFor="let ticket of tickets">
+                      <tr>
+                       <td>Ticket ID:<br> {{ticket.TicketId}}</td>
+                       <td>Flight Id:<br> {{ticket.FlightId}}</td>
+                       <td>Name:<br> {{ticket.FirstName}} {{ticket.LastName}} </td>
+                          <td>Source Id:<br> {{ticket.SourceId}}</td>
+                          <td>Destination Id:<br> {{ticket.DestinationId}}</td>
+                          <td>Departure Time:<br>{{ticket.DepartTime}} </td>
+                          <td>Arrival Time:<br>{{ticket.ArrivalTime}} </td>
+                          <td>Duration:<br>{{ticket.Duration}}</td>
+                          <td>Seat No:<br>{{ticket.SeatNo}}</td>
+                          <td>Date of Travel:<br>{{ticket.DateTravel}}</td>
+                          <td>Class:<br>{{ticket.Class}}</td>
+                          <td>Price:<br>{{ticket.Price|currency:"INR"}}</td>
+                          <td>Booking Id:<br>{{ticket.BookingId}}</td>
+                        
+                         </div>
+              </table>
+        </div>
+    </div>
+</div>
+

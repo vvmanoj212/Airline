@@ -1,0 +1,94 @@
+        <form [formGroup]="detailsForm" (ngSubmit)="onSubmit(detailsForm)"  *ngIf="!requestSent">
+            <mat-toolbar>
+                <span>Select Payment method</span>
+            </mat-toolbar>
+                <div style="align-items: center;" class="main">
+                               
+                    <img  src="https://i.imgur.com/28akQFX.jpg" width="100%" height="80px">
+                                <br/>
+                                <h2>Total amount:{{totalPrice|currency:"INR"}}</h2>
+                                <br/>
+                                <div  class="form-Group">
+                                    <div id=myForm align= "center">
+                                        <mat-form-field appearance="standard"> 
+                                            <mat-label>Type of Card</mat-label>
+                                        <mat-select required  formControlName = "card" >
+                                            <mat-option *ngFor="let cards of card" value="cards">{{cards}}</mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="detailsForm.controls.card.invalid">Please choose a card
+                                        </mat-error>
+           
+                                    </mat-form-field>
+                                    <mat-form-field appearance="standard">
+                                        <mat-label>Bank Name</mat-label>
+                                        <mat-select  required formControlName = "bank">
+                                        <mat-option *ngFor="let banks of bank" [value]="banks">{{banks}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field> <br>
+                                    <button mat-raised-button type="submit" color="primary">Proceed</button> &nbsp;&nbsp;
+                                    <button mat-raised-button  [routerLink]="['paymentgateway']" color="accent">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                          
+                        <form [formGroup]="carddetailsForm" (ngSubmit)="onSubmit2(carddetailsForm)" class="form-signin" *ngIf="requestSent && !makepayment" >
+                            <mat-toolbar>
+                                <span>Enter card details</span>
+                            </mat-toolbar>
+                            <div style="align-items: center;" class="main"> 
+                                <div class="form-group"> 
+                                    <mat-form-field appearance="standard" >
+                                        <mat-label>Card No</mat-label>
+                                        <input matInput [type]="hide ? 'password' : 'text'" matInput required placeholder="1111-2222-3333-4444" formControlName="cardNumber">
+                                        <button type="button" mat-icon-button color-white matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                          </button>
+                                      </mat-form-field><br>
+                                      <mat-form-field appearance="standard" >
+                                        <mat-label>CVV</mat-label>
+                                        <input type="number" matInput required placeholder="123" formControlName="cardCvv">
+                                      </mat-form-field><br> 
+                                      <mat-form-field appearance="standard" >
+                                        <mat-label>Card Holder Name</mat-label>
+                                        <input matInput required placeholder="Full Name" formControlName="cardHolderName">
+                                      </mat-form-field><br>
+                                      <mat-form-field appearance="standard" >
+                                        <mat-label>Mobile linked to Card</mat-label>
+                                        <input matInput required placeholder="Mobile"  formControlName="mobilenumber">
+                                      </mat-form-field><br>
+                                      <mat-form-field appearance="standard" >
+                                        <mat-label>Card Expiry</mat-label>
+                                        <input matInput required placeholder="MM/YY" value="cardExpiry" formControlName="cardExpiry">
+                                      </mat-form-field><br>
+                                      <button mat-raised-button color="primary"  type="submit" >Confirm Pay</button>                             
+                                <button mat-raised-button color="secondary"  [routerLink]="['paymentgateway']"> Back</button>
+                                 <button  mat-raised-button color="accent"  type="reset"> Cancel</button>
+                                </div>
+                                
+                                </div>
+                        </form>  
+                        <!-- <form [formGroup]="OtpForm" (ngSubmit)="onSubmit3(OtpForm)" class="form-signin" *ngIf="makepayment" >
+                            <mat-toolbar>
+                                <span>OTP validation</span>
+                            </mat-toolbar>
+                            <div style="align-items: center;" class="main">
+                                <div class="form-group"> 
+                                    <mat-form-field appearance="fill" >
+                                        <mat-label>Enter OTP</mat-label>
+                                        <input matInput required placeholder="xxxx" value="otp" formControlName="otp">
+                                      </mat-form-field><br> 
+                                      <button mat-raised-button color="primary"  type="submit" >Pay</button>                            
+                                 <button  mat-raised-button color="accent" routerLink="/"> Cancel</button> 
+                                </div>
+                            </div>
+                        </form> -->
+                        <!-- <div class="input-group">
+                            <mat-form-field appearance="standard">
+                              <mat-label>Enter your password</mat-label>
+                              <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                              <button type="button" mat-icon-button color-white matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                              </button>
+                            </mat-form-field>
+                        </div> -->

@@ -1,0 +1,65 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="container-fluid" >
+      <div align="center" class="main">		
+          <h3><b>Booking History</b></h3>       
+          <div align="center" class="table-responsive">      
+                <table align="center" style="align-items: center;"  id="mytable" class="table table-bordred table-striped">
+                   <div *ngFor=" let booking of bookings">
+                        <tr>
+                         <td>Booking Id:<br> {{booking.BookingId}}</td>
+                          <td>Date of Booking:<br>{{booking.DateBooking|date}}</td>
+                           <td>Transaction ID:<br> {{booking.TransactionId}}</td>
+                           <td>Total Price:<br> {{booking.TotalPrice|currency:'INR'}}</td>
+                            <!-- <td>Number of Seats:<br> {{booking.TotalPassenger}}</td>
+                            <td>Status:<br> {{booking.BookStatus}}</td>  -->
+                            <td><p data-placement="top" data-toggle="tooltip" title="Details">
+                            <button class="btn btn-primary btn-xs" data-title="Details" data-toggle="modal" data-target="#details" (click)="details(booking.BookingId,booking)">
+                             <span class="glyphicon glyphicon-pencil">Details</span> </button></p></td>
+                           </tr>
+
+                                <table *ngIf="trial===booking.BookingId&& this.check">
+                                    <div *ngFor= "let ticket of tickets,let i=index">
+                                      <tr>
+                                    <td>Name:<br>{{ticket.Title}} {{ticket.FirstName}} {{ticket.LastName}}</td>
+                                     <td>Passenger type:<br>{{ticket.AgeGroup}}</td>
+                                      <td>Source Id:<br>{{ticket.SourceId}}</td>
+                                      <td>Destination Id:<br>{{ticket.DestinationId}}</td>
+                                      <td>Arrival time:<br>{{ticket.ArrivalTime}}</td>
+                                      <td>Depart time:<br>{{ticket.DepartTime}}</td>
+                                      <td>Seat no:<br>{{ticket.SeatNo}}</td>
+                                      <td>Travel Date:<br>{{ticket.DateTravel|date}}</td>
+                                      <td>Price:<br>{{ticket.Price|currency:'INR'}}</td>
+                                      <td>Class:<br>{{ticket.Class}}</td>
+                                      <td *ngIf="ticket.DateCancellation!=null" >Cancellation date:<br>{{ticket.DateCancellation|date}}</td>
+                                      <!-- <td *ngIf="booking.BookStatus=='Confirmed'&& canCancel(ticket)" (click)="idpass(ticket)"><p data-placement="top" data-toggle="tooltip" title="Cancel">
+                                        <button class="btn btn-danger btn-xs" data-title="Cancel" data-toggle="modal" data-target="#delete" >
+                                         <span class="glyphicon glyphicon-pencil">Cancel ticket</span> </button></p></td> -->
+                                       </tr>
+                                <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                <div class="modal-content">
+                                      <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                    <h4 class="modal-title custom_align" id="Heading">Cancel Ticket</h4>
+                                  </div>
+                                      <div class="modal-body">
+                                   
+                                   <div style="color: red;" ><span  class="glyphicon glyphicon-warning-sign"></span>Do you want to cancel this ticket?</div>
+                                   
+                                  </div>
+                                  <div class="modal-footer ">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" (click)="ondelete(tickter)"><span class="glyphicon glyphicon-remove"></span> Yes</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+                                  </div>
+                                    </div>
+                              
+                              </div>
+                  
+                                </div>
+                              </div>
+                            </table>  
+                    </div>  
+                </table>
+             </div>
+        </div> 
+  </div>

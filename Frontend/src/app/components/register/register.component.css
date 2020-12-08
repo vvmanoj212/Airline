@@ -1,0 +1,44 @@
+.my-form{
+    font-size: large;
+    width: 600px;
+    height: auto;
+    margin: 0em auto;
+
+}
+/* 
+.my-form .form-group
+{
+    display:flex;
+    justify-content:space-around;
+    padding-top: 2rem;;
+
+} */
+mat-form-field {
+    width:50%;
+    letter-spacing: 1px;
+    padding: 5px 10px;
+    margin:auto;   
+}
+
+mat-label
+{
+	font-weight: bold;
+	text-transform: uppercase;
+    height: 30px;
+    padding-left:10px;
+    font-size: 15px;
+}
+
+.buttons
+{
+    display:flex;
+    justify-content: space-around;
+    padding:5% 0;
+}
+
+mat-toolbar{
+    color: black;
+    display: flex;
+    justify-content: center;
+    padding: 5%;
+}

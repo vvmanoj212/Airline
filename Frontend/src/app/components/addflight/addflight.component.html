@@ -1,0 +1,55 @@
+
+
+<div class="main" align="center"> 
+  <mat-toolbar>
+    <span>Add Flight</span>
+</mat-toolbar>
+  <form color="primary" [formGroup]="addFlight">
+<mat-form-field appearance="standard" >
+  <mat-label>Flight ID</mat-label>
+  <input matInput required placeholder="Enter Flight ID" formControlName="FlightId"><br>
+</mat-form-field><br>
+<mat-form-field appearance="standard" >
+  <mat-label>Source ID</mat-label>
+  <mat-select required formControlName="SourceId"> 
+    <mat-option *ngFor="let airport of airports" value="{{airport.AirportId}}">{{airport.CityName}}({{airport.AirportId}})</mat-option>
+  </mat-select>
+</mat-form-field> &nbsp;&nbsp;
+<mat-form-field appearance="standard" >
+  <mat-label>Destination ID</mat-label>
+  <mat-select required formControlName="DestinationId">
+    
+    <mat-option *ngFor="let airport of airports" value="{{airport.AirportId}}">{{airport.CityName}}({{airport.AirportId}})</mat-option><br>
+  </mat-select>
+</mat-form-field><br>
+<mat-form-field appearance="standard" >
+  <mat-label>Departure Time</mat-label>
+  <input matInput type="time" required  formControlName="DepartTime">
+</mat-form-field>&nbsp;&nbsp;
+<mat-form-field appearance="standard" >
+  <mat-label>Arrival Time</mat-label>
+  <input matInput type="time" required  formControlName="ArrivalTime"><br>
+</mat-form-field><br>
+
+<mat-form-field appearance="standard" >
+  <mat-label>Economy Price:</mat-label>
+  <input matInput type="number" required  formControlName="EconomyPrice">
+</mat-form-field>&nbsp;&nbsp;
+<mat-form-field appearance="standard" >
+  <mat-label>Business Price:</mat-label>
+  <input matInput type="number" required  formControlName="BusinessPrice"><br>
+</mat-form-field><br>
+
+      <div align="center">
+        
+      <button mat-raised-button type="submit" color="Disabled" (click)="onSubmit(addFlight.value)" >Add Flight</button>&nbsp;&nbsp;&nbsp;&nbsp;
+      <button mat-raised-button type="submit" color="Disabled" type="button" (click)="this.route.navigate(['adminview'])" >Cancel</button> 
+    
+    </div>
+  </form>
+</div>
+
+
+              
+ 
+

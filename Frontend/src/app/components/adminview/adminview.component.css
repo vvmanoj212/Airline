@@ -1,0 +1,20 @@
+.main {
+    font-weight: 400;
+    padding: 2rem;
+    color: black;
+    font-size:20px;
+    width: 1200px;
+    height: auto;
+    margin: 0em auto;
+    
+} 
+
+
+  mat-toolbar{
+    background-color: black;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    padding: 5%;
+
+}

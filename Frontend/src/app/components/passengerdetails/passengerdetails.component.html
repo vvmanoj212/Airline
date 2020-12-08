@@ -1,0 +1,138 @@
+
+
+<form [formGroup]="passengerForm" (ngSubmit)="submit()">
+    <div formGroupName="adultForm">
+        <div class="list-group">
+
+    <div *ngFor="let ticket of ta.controls; let i = index" (onload)= "createRange(this.adultpassengernumber)" class="list-group list-group-flush">
+        <div class="list-group-item">
+            <h5 class="card-title">Adult Ticket {{i + 1}}</h5>
+            <div [formGroup]="ticket" class="form-row">
+                <div class="form-group col-2">
+                    <label>Title</label>
+                    <select type="text" placeholder="Title" label="Title"formControlName="title" class="form-control" [ngClass]="{ 'is-invalid': submitted && ticket.controls.title.errors }" >
+                        <option>Mr</option>
+                        <option>Miss</option>
+                        <option>Mrs</option>
+                    </select>
+                    <div *ngIf="submitted && ticket.controls.title.errors" class="invalid-feedback">
+                        <div *ngIf="ticket.controls.title.errors.required">Title is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group col-4">
+                    <label>First name</label>
+                    <input type="text" formControlName="firstname" class="form-control" [ngClass]="{ 'is-invalid': submitted && ticket.controls.firstname.errors }" />
+                    <div *ngIf="submitted && ticket.controls.firstname.errors" class="invalid-feedback">
+                        <div *ngIf="ticket.controls.firstname.errors.required">First name is required</div>
+                        <div *ngIf="ticket.controls.lastname.errors.firstname">Please give your name</div>
+                    </div>
+                </div>
+
+                <div class="form-group col-4">
+                    <label>Last Name</label>
+                    <input type="text" formControlName="lastname" class="form-control" [ngClass]="{ 'is-invalid': submitted && ticket.controls.lastname.errors }" />
+                    <div *ngIf="submitted && ticket.controls.lastname.errors" class="invalid-feedback">
+                        <div *ngIf="ticket.controls.lastname.errors.required">Last name is required</div>
+                        <div *ngIf="ticket.controls.lastname.errors.firstname">Please give your name</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+<br>
+    <div formGroupName="childForm">
+        <div class="list-group">
+    <div *ngFor="let ticket of tc.controls; let i = index" (onload)= "createRange(this.childpassengernumber)" class="list-group list-group-flush">
+        <div class="list-group-item">
+            <h5 class="card-title"> child Ticket {{i + 1}}</h5>
+            <div [formGroup]="ticket" class="form-row">
+                <div class="form-group col-2">
+                    <label>Title</label>
+                    <select type="text" placeholder="Title" label="Title"formControlName="title" class="form-control" [ngClass]="{ 'is-invalid': submitted && ticket.controls.title.errors }" >
+                        <option>Mr</option>
+                        <option>Miss</option>
+                        <option>Mrs</option>
+                    </select>
+                    <div *ngIf="submitted && ticket.controls.title.errors" class="invalid-feedback">
+                        <div *ngIf="ticket.controls.title.errors.required">Title is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group col-4">
+                    <label>First name</label>
+                    <input type="text" formControlName="firstname" class="form-control" [ngClass]="{ 'is-invalid': submitted && ticket.controls.firstname.errors }" />
+                    <div *ngIf="submitted && ticket.controls.firstname.errors" class="invalid-feedback">
+                        <div *ngIf="ticket.controls.firstname.errors.required">First name is required</div>
+                        <div *ngIf="ticket.controls.lastname.errors.firstname">Please give your name</div>
+                    </div>
+                </div>
+
+                <div class="form-group col-4">
+                    <label>Last Name</label>
+                    <input type="text" formControlName="lastname" class="form-control" [ngClass]="{ 'is-invalid': submitted && ticket.controls.lastname.errors }" />
+                    <div *ngIf="submitted && ticket.controls.lastname.errors" class="invalid-feedback">
+                        <div *ngIf="ticket.controls.lastname.errors.required">Last name is required</div>
+                        <div *ngIf="ticket.controls.lastname.errors.firstname">Please give your name</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    
+        </div>
+    </div>
+<br>
+    <div formGroupName="infantForm">
+        <div class="list-group">
+    <div *ngFor="let ticket of ti.controls; let i = index" (onload)= "createRange(this.infantpassengernumber)" class="list-group list-group-flush">
+        <div class="list-group-item">
+            <h5 class="card-title">Infant Ticket {{i + 1}}</h5>
+            <div [formGroup]="ticket" class="form-row">
+                <div class="form-group col-6">
+                    <label>Title</label>
+                    <select type="text" placeholder="Title" label="Title"formControlName="title" class="form-control" [ngClass]="{ 'is-invalid': submitted && ticket.controls.title.errors }" >
+                        <option>Mr</option>
+                        <option>Miss</option>
+                        <option>Mrs</option>
+                    </select>
+                    <div *ngIf="submitted && ticket.controls.title.errors" class="invalid-feedback">
+                        <div *ngIf="ticket.controls.title.errors.required">Title is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group col-6">
+                    <label>First name</label>
+                    <input type="text" formControlName="firstname" class="form-control" [ngClass]="{ 'is-invalid': submitted && ticket.controls.firstname.errors }" />
+                    <div *ngIf="submitted && ticket.controls.firstname.errors" class="invalid-feedback">
+                        <div *ngIf="ticket.controls.firstname.errors.required">First name is required</div>
+                        <div *ngIf="ticket.controls.lastname.errors.firstname">Please give your name</div>
+                    </div>
+                </div>
+
+                <div class="form-group col-6">
+                    <label>Last Name</label>
+                    <input type="text" formControlName="lastname" class="form-control" [ngClass]="{ 'is-invalid': submitted && ticket.controls.lastname.errors }" />
+                    <div *ngIf="submitted && ticket.controls.lastname.errors" class="invalid-feedback">
+                        <div *ngIf="ticket.controls.lastname.errors.required">Last name is required</div>
+                        <div *ngIf="ticket.controls.lastname.errors.firstname">Please give your name</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    
+        </div>
+    </div>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-dark" [disabled]="!passengerForm.valid" >Select Seat(s)</button>
+    </div>
+
+</form>

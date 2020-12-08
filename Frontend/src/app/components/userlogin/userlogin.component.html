@@ -1,0 +1,50 @@
+<form class="loginform" [formGroup]="loginForm" id="loginform" role="form">
+    <nav class="navbar navbar-inverse">
+       <ul  class="nav nav-tabs">
+         <li><a  [routerLink]="['/userlogin']" class="nav-item  nav-link"><b>User Login</b> </a></li>
+         <li><a [routerLink]="['/adminlogin']"  class="nav-item  nav-link"><b>Admin Login</b></a></li>
+       </ul>
+    </nav>
+
+  <div class="form-group"><h1>Sign In</h1></div>
+  <div class="input-group">
+    <mat-form-field appearance="standard"> 
+      <mat-label >Enter your email</mat-label>
+      <input matInput placeholder="user@example.com" formControlName="email" required>
+      <mat-error *ngIf="loginForm.controls.email.invalid">Please enter valid email</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="input-group">
+      <mat-form-field appearance="standard">
+        <mat-label>Enter your password</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+        <button type="button" mat-icon-button color-white matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+  </div>
+  <div class="form-group">    
+      <button type="submit" mat-raised-button class="btn-success" (click)="doLogin()" >Login</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      
+      <button mat-raised-button class="btn btn-Disabled" >Forgot Password?</button>
+</div>
+<div class="form-group" >
+      <div>
+          Don't have an account!<a style="color:orangered" [routerLink]="['/register']"> New User? Register here</a>
+      </div>
+</div>    
+</form>     
+
+
+                                    
+                         
+
+
+                                     
+    
+    
+    
+                            
+      
+
+       

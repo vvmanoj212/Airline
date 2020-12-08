@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GladiatorProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="AdminEmailId" />
+    </Key>
+    <Property Name="AdminEmailId" Type="String" MaxLength="320" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Airport">
+    <Key>
+      <PropertyRef Name="AirportId" />
+    </Key>
+    <Property Name="AirportId" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AirportName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CityName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StateName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Flights" Relationship="Self.Flight_Destination_FK" FromRole="Airport" ToRole="Flight" />
+    <NavigationProperty Name="Flights1" Relationship="Self.Flight_Source_FK" FromRole="Airport" ToRole="Flight" />
+  </EntityType>
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="BookingId" />
+    </Key>
+    <Property Name="BookingId" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserEmailId" Type="String" MaxLength="320" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DateBooking" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="TransactionId" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TotalPrice" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="TotalPassenger" Type="Int32" Nullable="false" />
+    <Property Name="BookStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="UserTable" Relationship="Self.Booking_User_FK" FromRole="Booking" ToRole="UserTable" />
+    <NavigationProperty Name="Tickets" Relationship="Self.Ticket_Booking_FK" FromRole="Booking" ToRole="Ticket" />
+  </EntityType>
+  <EntityType Name="Flight">
+    <Key>
+      <PropertyRef Name="FlightId" />
+    </Key>
+    <Property Name="FlightId" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SourceId" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DestinationId" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DepartTime" Type="Time" Nullable="false" Precision="0" />
+    <Property Name="ArrivalTime" Type="Time" Nullable="false" Precision="0" />
+    <Property Name="Duration" Type="Time" Nullable="false" Precision="0" />
+    <Property Name="EconomyPrice" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+    <Property Name="BusinessPrice" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+    <NavigationProperty Name="Airport" Relationship="Self.Flight_Destination_FK" FromRole="Flight" ToRole="Airport" />
+    <NavigationProperty Name="Airport1" Relationship="Self.Flight_Source_FK" FromRole="Flight" ToRole="Airport" />
+    <NavigationProperty Name="FlightSchedules" Relationship="Self.Schedule_Flight_FK" FromRole="Flight" ToRole="FlightSchedule" />
+    <NavigationProperty Name="Tickets" Relationship="Self.Ticket_Flight_FK" FromRole="Flight" ToRole="Ticket" />
+  </EntityType>
+  <EntityType Name="FlightSchedule">
+    <Key>
+      <PropertyRef Name="DateFlight" />
+      <PropertyRef Name="FlightId" />
+    </Key>
+    <Property Name="DateFlight" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="FlightId" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AvailableSeats" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Flight" Relationship="Self.Schedule_Flight_FK" FromRole="FlightSchedule" ToRole="Flight" />
+  </EntityType>
+  <EntityType Name="Ticket">
+    <Key>
+      <PropertyRef Name="TicketId" />
+      <PropertyRef Name="FlightId" />
+    </Key>
+    <Property Name="TicketId" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FlightId" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Age" Type="Int32" Nullable="false" />
+    <Property Name="SeatNo" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DateTravel" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Class" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Price" Type="Int32" Nullable="false" />
+    <Property Name="BookingId" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DateCancellation" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Booking" Relationship="Self.Ticket_Booking_FK" FromRole="Ticket" ToRole="Booking" />
+    <NavigationProperty Name="Flight" Relationship="Self.Ticket_Flight_FK" FromRole="Ticket" ToRole="Flight" />
+  </EntityType>
+  <EntityType Name="UserTable">
+    <Key>
+      <PropertyRef Name="UserEmailId" />
+    </Key>
+    <Property Name="UserEmailId" Type="String" MaxLength="320" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Age" Type="Int32" Nullable="false" />
+    <Property Name="MobileNumber" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Bookings" Relationship="Self.Booking_User_FK" FromRole="UserTable" ToRole="Booking" />
+  </EntityType>
+  <Association Name="Flight_Destination_FK">
+    <End Role="Airport" Type="Self.Airport" Multiplicity="1" />
+    <End Role="Flight" Type="Self.Flight" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Airport">
+        <PropertyRef Name="AirportId" />
+      </Principal>
+      <Dependent Role="Flight">
+        <PropertyRef Name="DestinationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Flight_Source_FK">
+    <End Role="Airport" Type="Self.Airport" Multiplicity="1" />
+    <End Role="Flight" Type="Self.Flight" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Airport">
+        <PropertyRef Name="AirportId" />
+      </Principal>
+      <Dependent Role="Flight">
+        <PropertyRef Name="SourceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Booking_User_FK">
+    <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTable">
+        <PropertyRef Name="UserEmailId" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="UserEmailId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Ticket_Booking_FK">
+    <End Role="Booking" Type="Self.Booking" Multiplicity="1" />
+    <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Booking">
+        <PropertyRef Name="BookingId" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="BookingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Schedule_Flight_FK">
+    <End Role="Flight" Type="Self.Flight" Multiplicity="1" />
+    <End Role="FlightSchedule" Type="Self.FlightSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Flight">
+        <PropertyRef Name="FlightId" />
+      </Principal>
+      <Dependent Role="FlightSchedule">
+        <PropertyRef Name="FlightId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Ticket_Flight_FK">
+    <End Role="Flight" Type="Self.Flight" Multiplicity="1" />
+    <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Flight">
+        <PropertyRef Name="FlightId" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="FlightId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GladiatorProjectEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="Airports" EntityType="Self.Airport" />
+    <EntitySet Name="Bookings" EntityType="Self.Booking" />
+    <EntitySet Name="Flights" EntityType="Self.Flight" />
+    <EntitySet Name="FlightSchedules" EntityType="Self.FlightSchedule" />
+    <EntitySet Name="Tickets" EntityType="Self.Ticket" />
+    <EntitySet Name="UserTables" EntityType="Self.UserTable" />
+    <AssociationSet Name="Flight_Destination_FK" Association="Self.Flight_Destination_FK">
+      <End Role="Airport" EntitySet="Airports" />
+      <End Role="Flight" EntitySet="Flights" />
+    </AssociationSet>
+    <AssociationSet Name="Flight_Source_FK" Association="Self.Flight_Source_FK">
+      <End Role="Airport" EntitySet="Airports" />
+      <End Role="Flight" EntitySet="Flights" />
+    </AssociationSet>
+    <AssociationSet Name="Booking_User_FK" Association="Self.Booking_User_FK">
+      <End Role="UserTable" EntitySet="UserTables" />
+      <End Role="Booking" EntitySet="Bookings" />
+    </AssociationSet>
+    <AssociationSet Name="Ticket_Booking_FK" Association="Self.Ticket_Booking_FK">
+      <End Role="Booking" EntitySet="Bookings" />
+      <End Role="Ticket" EntitySet="Tickets" />
+    </AssociationSet>
+    <AssociationSet Name="Schedule_Flight_FK" Association="Self.Schedule_Flight_FK">
+      <End Role="Flight" EntitySet="Flights" />
+      <End Role="FlightSchedule" EntitySet="FlightSchedules" />
+    </AssociationSet>
+    <AssociationSet Name="Ticket_Flight_FK" Association="Self.Ticket_Flight_FK">
+      <End Role="Flight" EntitySet="Flights" />
+      <End Role="Ticket" EntitySet="Tickets" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

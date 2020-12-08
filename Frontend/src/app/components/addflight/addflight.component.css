@@ -1,0 +1,22 @@
+
+
+.main {
+    font-size: large;
+    width: 600px;
+    height: auto;
+    margin: 0em auto;
+   
+}
+
+
+button{
+    margin-bottom: 2rem;
+}
+mat-toolbar{
+    background-color:black;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    padding: 5%;
+
+}
