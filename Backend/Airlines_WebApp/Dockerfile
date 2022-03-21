@@ -3,11 +3,11 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
-WORKDIR /Backend/Airlines_WebApp
+WORKDIR /src
 COPY ["Airlines_WebApp", ""]
 RUN dotnet restore "./Airlines_WebApp"
 COPY . .
-WORKDIR /Backend/Airlines_WebApp/.
+WORKDIR /src/.
 RUN dotnet build "Airlines_WebApp" -c Release -o /app/build
 FROM build AS publish
 RUN dotnet publish "Airlines_WebApp" -c Release -o /app/publish
